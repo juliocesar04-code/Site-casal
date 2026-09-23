@@ -1,0 +1,10 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Build output and fixed fake values used by the unit test runner"
+paths = [
+  '''^\.next/''',
+  '''^node_modules/''',
+  '''^vitest\.config\.ts$''',
+]
