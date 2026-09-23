@@ -6,6 +6,7 @@ import type { SessionUser } from "@/server/auth/session";
 import { mercadoPago } from "@/server/payments/mercadopago";
 import type { PaymentProvider } from "@/server/payments/provider";
 import { logEvent, logSecurityEvent } from "@/server/security/log";
+import { track } from "@/server/analytics/track";
 import { enforceLimit } from "@/server/security/rate-limit";
 import { fromDatabaseError, ServiceError } from "@/server/services/errors";
 
@@ -140,7 +141,10 @@ export async function handlePaymentWebhook(request: Request, rawBody: string): P
       if (error.message.includes("amount_mismatch")) return "processed";
       throw new Error(error.message);
     }
-    await recordOutcome(notification.eventKey, String((data as { outcome?: string })?.outcome ?? "approved"));
+    const outcome = String((data as { outcome?: string })?.outcome ?? "approved");
+    await recordOutcome(notification.eventKey, outcome);
+    if (outcome === "published" || outcome === "credited") await track("payment_success");
+    if (outcome === "published") await track("memory_published");
     return "processed";
   }
 
