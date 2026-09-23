@@ -1,0 +1,85 @@
+export const experience = {
+  gate: {
+    title: "Alguém preparou algo para você.",
+    for: "Para {name}",
+    open: "Abrir",
+    sound: "Melhor com calma. Se puder, aumente o brilho da tela.",
+  },
+  scheduled: {
+    title: "Ainda não é hora.",
+    body: "Alguém preparou algo para você, para abrir numa data especial.",
+    for: "Para {name}",
+    opensAt: "Abre em {date}",
+    units: { days: "dias", hours: "horas", minutes: "minutos", seconds: "segundos" },
+    ready: "Chegou a hora.",
+    reload: "Abrir agora",
+  },
+  from: "De {name}",
+  chapter: "Capítulo {n}",
+  timeline: "Linha do tempo",
+  gallery: "Momentos",
+  contributions: "Também quiseram dizer",
+  next: "Seguir",
+  previous: "Voltar",
+  end: "Fim",
+  replay: "Ver de novo",
+  seal: {
+    createdBy: "Criada por {sender} para {recipient}",
+    createdFor: "Criada para {recipient}",
+    published: "Publicada em {date}",
+    id: "ID {id}",
+    preserved: "Preservada como originalmente publicada.",
+  },
+  response: {
+    title: "Quer responder?",
+    lead: "Sua resposta chega só para quem criou esta memória.",
+    name: "Seu nome (opcional)",
+    body: "Sua mensagem",
+    submit: "Enviar resposta",
+    sent: "Resposta enviada. Obrigado por responder.",
+  },
+  cta: {
+    text: "Crie algo para alguém importante para você.",
+    link: "Conhecer o Relicário",
+  },
+  preview: {
+    banner: "Pré-visualização. Nada aqui é público até você publicar.",
+  },
+  notFound: {
+    title: "Esta memória não está disponível.",
+    body: "O link pode ter sido digitado errado ou a memória não existe mais.",
+    home: "Ir para o início",
+  },
+  card: {
+    title: "Tem algo esperando por você.",
+    instructions: "Aponte a câmera do celular para o código.",
+    print: "Imprimir",
+    fold: "Recorte na linha pontilhada.",
+    dedication: "Dedicatória",
+  },
+} as const;
+
+export const contribute = {
+  title: "Deixe sua mensagem",
+  lead: "{sender} está preparando uma surpresa para {recipient} e quer que você faça parte.",
+  leadNoSender: "Estão preparando uma surpresa para {recipient} e querem que você faça parte.",
+  privacy: "Só quem organizou a surpresa lê o que você enviar. Nada é publicado sem a aprovação dessa pessoa.",
+  name: "Seu nome",
+  body: "Sua mensagem",
+  media: "Foto ou vídeo curto (opcional)",
+  mediaHint: "JPG, PNG, WebP até 15 MB, ou MP4/MOV até 60 segundos.",
+  submit: "Enviar",
+  sending: "Enviando…",
+  sent: {
+    title: "Recebido.",
+    body: "Sua mensagem foi entregue para quem está organizando. Obrigado por fazer parte.",
+  },
+  invalid: {
+    title: "Este link não está mais ativo.",
+    body: "Ele pode ter expirado ou sido revogado. Peça um novo para quem enviou.",
+  },
+  closed: {
+    title: "A surpresa já foi entregue.",
+    body: "Esta memória foi publicada e não recebe mais mensagens.",
+  },
+} as const;
