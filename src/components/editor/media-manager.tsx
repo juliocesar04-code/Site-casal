@@ -88,7 +88,7 @@ export function MediaManager({ memoryId, sectionId, items, onChange, compact = f
                 {item.thumbUrl ? <img src={item.thumbUrl} alt={item.alt} className="h-full w-full object-cover" /> : null}
                 {item.kind === "video" ? (
                   <span className="absolute bottom-2 left-2 rounded-full bg-night/80 px-2 py-0.5 text-[0.65rem] text-paper">
-                    vídeo
+                    {t.editor.upload.videoBadge}
                   </span>
                 ) : null}
                 <div className="absolute inset-x-1.5 top-1.5 flex justify-between gap-1 opacity-100 sm:opacity-0 sm:transition-opacity sm:group-focus-within:opacity-100 sm:group-hover:opacity-100">
@@ -149,7 +149,7 @@ export function MediaManager({ memoryId, sectionId, items, onChange, compact = f
                   className="shrink-0 text-xs underline"
                   onClick={() => setJobs((current) => current.filter((j) => j.key !== job.key))}
                 >
-                  ok
+                  {t.editor.upload.dismiss}
                 </button>
               ) : (
                 <span className="h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-ink/20 border-t-ink" aria-hidden="true" />

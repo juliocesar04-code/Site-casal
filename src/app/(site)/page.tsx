@@ -91,13 +91,13 @@ export default function LandingPage() {
             <SectionTitle light>{t.site.templates.title}</SectionTitle>
             <p className="text-lg leading-relaxed text-paper/70">{t.site.templates.lead}</p>
           </div>
-          <ul className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-14 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-8 lg:grid-cols-3">
             {TEMPLATE_IDS.map((id) => (
               <li key={id} className="grid gap-4">
                 <TemplateMiniature id={id} />
                 <div className="grid gap-1.5">
-                  <h3 className="font-display text-2xl">{t.site.templates.items[id].name}</h3>
-                  <p className="text-sm leading-relaxed text-paper/65">{t.site.templates.items[id].body}</p>
+                  <h3 className="font-display text-xl sm:text-2xl">{t.site.templates.items[id].name}</h3>
+                  <p className="text-[0.8rem] leading-relaxed text-paper/65 sm:text-sm">{t.site.templates.items[id].body}</p>
                 </div>
               </li>
             ))}
@@ -122,7 +122,7 @@ export default function LandingPage() {
       </section>
 
       <section className="border-y border-line bg-paper-2">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 md:grid-cols-2 md:py-28">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 md:py-28 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="grid content-start gap-5">
             <Eyebrow>{t.site.collaboration.eyebrow}</Eyebrow>
             <SectionTitle>{t.site.collaboration.title}</SectionTitle>
@@ -136,7 +136,7 @@ export default function LandingPage() {
               ))}
             </ul>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 md:gap-5">
+          <div className="grid gap-6 sm:grid-cols-2 sm:gap-5">
             <article id="qr" className="grid content-start gap-5 rounded-2xl bg-card p-7 shadow-[var(--shadow-float)]">
               <Eyebrow>{t.site.qr.eyebrow}</Eyebrow>
               <h3 className="font-display text-3xl leading-tight">{t.site.qr.title}</h3>

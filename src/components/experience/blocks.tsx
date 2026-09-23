@@ -172,7 +172,7 @@ export function ContributionsBlock({ items }: { items: ViewMemory["contributions
       <Reveal className="mb-12 text-center">
         <Kicker>{t.experience.contributions}</Kicker>
       </Reveal>
-      <div className="columns-1 gap-6 sm:columns-2 [&>*]:mb-6">
+      <div className={`gap-6 [&>*]:mb-6 ${items.length > 1 ? "columns-1 sm:columns-2" : "mx-auto max-w-xl"}`}>
         {items.map((item, index) => (
           <Reveal key={item.id} delay={(index % 2) * 0.06} className="break-inside-avoid">
             <figure className="rounded-sm border border-[var(--m-line)] bg-[var(--m-surface)] p-6 sm:p-8">

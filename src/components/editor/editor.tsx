@@ -19,26 +19,6 @@ import { fill, formatDate, t } from "@/lib/i18n";
 const STEPS = ["recipient", "template", "story", "moments", "personalize", "preview", "review", "publish"] as const;
 type Step = (typeof STEPS)[number];
 
-const occasionLabels: Record<(typeof OCCASIONS)[number], string> = {
-  namoro: "Namoro",
-  casamento: "Casamento",
-  amizade: "Amizade",
-  familia: "Família",
-  aniversario: "Aniversário",
-  pedido: "Pedido de casamento",
-  formatura: "Formatura",
-  nascimento: "Nascimento",
-  homenagem: "Homenagem",
-  agradecimento: "Agradecimento",
-  despedida: "Despedida",
-  dia_das_maes: "Dia das Mães",
-  dia_dos_pais: "Dia dos Pais",
-  viagem: "Viagem",
-  grupo: "Grupo",
-  professor: "Professores",
-  outro: "Outra",
-};
-
 // Brazil has had no daylight saving time since 2019, so Brasília is UTC-3.
 function toLocalInput(iso: string | null): string {
   if (!iso) return "";
@@ -210,7 +190,7 @@ export function Editor({
                 <option value="">{steps.recipient.occasionNone}</option>
                 {OCCASIONS.map((occasion) => (
                   <option key={occasion} value={occasion}>
-                    {occasionLabels[occasion]}
+                    {steps.recipient.occasions[occasion]}
                   </option>
                 ))}
               </select>
