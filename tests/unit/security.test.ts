@@ -36,7 +36,7 @@ describe("safeRedirectPath", () => {
 
 describe("text normalisation", () => {
   it("removes bidi overrides and control characters", () => {
-    expect(cleanLine("Ana‮gnp.exe")).toBe("Anagnp.exe");
+    expect(cleanLine("Ana\u202Egnp.exe")).toBe("Anagnp.exe");
     expect(cleanText("a\u0000b\u0007c")).toBe("abc");
     expect(cleanText("  linha 1\r\nlinha 2  ")).toBe("linha 1\nlinha 2");
   });
@@ -182,5 +182,14 @@ describe("content security policy", () => {
 
   it("only relaxes framing for the preview frame", () => {
     expect(buildCsp({ nonce: "a", supabaseOrigin: null, allowSameOriginFrame: true, dev: false })).toContain("frame-ancestors 'self'");
+  });
+});
+
+describe("plural", () => {
+  it("uses the singular only for exactly one", async () => {
+    const { plural } = await import("@/lib/i18n");
+    expect(plural("{count} capítulo|{count} capítulos", 1)).toBe("1 capítulo");
+    expect(plural("{count} capítulo|{count} capítulos", 0)).toBe("0 capítulos");
+    expect(plural("{count} capítulo|{count} capítulos", 3)).toBe("3 capítulos");
   });
 });

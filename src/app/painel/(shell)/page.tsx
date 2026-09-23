@@ -3,7 +3,7 @@ import { DeleteDialog } from "@/components/dashboard/delete-dialog";
 import { ShareActions } from "@/components/share/share-actions";
 import { Button } from "@/components/ui/button";
 import { LogoMark } from "@/components/ui/logo";
-import { fill, formatDate, formatRelative, t } from "@/lib/i18n";
+import { fill, formatDate, formatRelative, plural, t } from "@/lib/i18n";
 import { env } from "@/server/env";
 import { listDashboard, type DashboardItem } from "@/server/services/memories";
 import { signReadUrls } from "@/server/storage/media-storage";
@@ -121,12 +121,12 @@ export default async function DashboardPage({ searchParams }: PageProps<"/painel
                     </p>
                     {item.pending_contributions > 0 ? (
                       <p className="text-xs font-medium text-brass">
-                        {fill(t.dashboard.pendingContributions, { count: item.pending_contributions })}
+                        {plural(t.dashboard.pendingContributions, item.pending_contributions)}
                       </p>
                     ) : null}
                     {item.unread_responses > 0 ? (
                       <p className="text-xs font-medium text-brass">
-                        {fill(t.dashboard.unreadResponses, { count: item.unread_responses })}
+                        {plural(t.dashboard.unreadResponses, item.unread_responses)}
                       </p>
                     ) : null}
                   </div>

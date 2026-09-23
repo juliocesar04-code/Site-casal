@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { InputField, TextareaField } from "@/components/ui/field";
 import { OCCASIONS, TEMPLATE_IDS, THEME_IDS, THEMES, type TemplateId } from "@/domain/presets";
 import { track } from "@/lib/analytics-client";
-import { fill, formatDate, t } from "@/lib/i18n";
+import { fill, formatDate, plural, t } from "@/lib/i18n";
 
 const STEPS = ["recipient", "template", "story", "moments", "personalize", "preview", "review", "publish"] as const;
 type Step = (typeof STEPS)[number];
@@ -123,8 +123,8 @@ export function Editor({
   const steps = t.editor.steps;
 
   return (
-    <div className="mx-auto grid max-w-6xl gap-10 px-4 py-8 sm:px-6 lg:grid-cols-[14rem_1fr] lg:py-12">
-      <aside className="lg:sticky lg:top-8 lg:self-start">
+    <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-8 sm:px-6 lg:grid-cols-[14rem_minmax(0,1fr)] lg:py-12">
+      <aside className="min-w-0 lg:sticky lg:top-8 lg:self-start">
         <Link href="/painel" className="text-sm text-muted hover:text-ink">
           ← {t.editor.back}
         </Link>
@@ -435,11 +435,11 @@ export function Editor({
                 label={steps.review.checklist.message}
                 value={fields.message ? `${fields.message.slice(0, 90)}${fields.message.length > 90 ? "…" : ""}` : null}
               />
-              <ReviewRow label={fill(steps.review.checklist.media, { count: media.filter((m) => !m.contribution_id).length })} value="" />
-              <ReviewRow label={fill(steps.review.checklist.chapters, { count: sections.length })} value="" />
-              <ReviewRow label={fill(steps.review.checklist.timeline, { count: timeline.length })} value="" />
+              <ReviewRow label={plural(steps.review.checklist.media, media.filter((m) => !m.contribution_id).length)} value="" />
+              <ReviewRow label={plural(steps.review.checklist.chapters, sections.length)} value="" />
+              <ReviewRow label={plural(steps.review.checklist.timeline, timeline.length)} value="" />
               {contributions.length > 0 ? (
-                <ReviewRow label={fill(steps.review.checklist.contributions, { count: approved })} value="" />
+                <ReviewRow label={plural(steps.review.checklist.contributions, approved)} value="" />
               ) : null}
               <ReviewRow
                 label={fill(steps.review.checklist.release, {
@@ -450,7 +450,7 @@ export function Editor({
             </ul>
             {pendingReview > 0 ? (
               <p className="rounded-lg bg-brass/10 px-4 py-3 text-sm text-brass">
-                {fill(steps.review.checklist.pendingContributions, { count: pendingReview })}
+                {plural(steps.review.checklist.pendingContributions, pendingReview)}
               </p>
             ) : null}
             {!ready ? <p className="text-sm text-danger">{steps.review.missing}</p> : null}

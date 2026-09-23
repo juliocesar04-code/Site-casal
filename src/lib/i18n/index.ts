@@ -15,6 +15,13 @@ export function fill(template: string, values: Record<string, string | number>):
   return template.replace(/\{(\w+)\}/g, (match, key: string) => (key in values ? String(values[key]) : match));
 }
 
+// Templates with a count use "singular|plural". Portuguese uses the singular
+// only for exactly one ("0 capítulos", "1 capítulo").
+export function plural(template: string, count: number): string {
+  const [one = template, other = one] = template.split("|");
+  return fill(count === 1 ? one : other, { count });
+}
+
 export function formatDate(value: string | Date, style: "long" | "short" | "datetime" = "long"): string {
   const date = typeof value === "string" ? new Date(value.length === 10 ? `${value}T12:00:00` : value) : value;
   const options: Intl.DateTimeFormatOptions =
